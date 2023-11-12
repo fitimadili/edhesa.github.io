@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>“Nëpër male thërrasin trimat Kosova, Kosova”</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAACPYlEA////AKVKJABQptAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIjIiIiIiIiIjMzAiIiIiIjMzMyIiIiIiIzMyIiIiIiIiMyIiIiIiEiIiIiEiIiIiEiIhIiIiIiIiESIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+</head>
+<style>
+    body  {
+		background: #244AA5;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		color: white;
+		font-family: Tahoma;
+
+    }
+	.kosova {
+		max-width: 600px;
+		border-radius: 5px;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+		width: 100%;
+		margin-top: 50px;
+	}
+    input#targetDateInput {
+		width: 120px;
+		height: 33px;
+		font-size: 16px;
+		background: white;
+		border: none;
+		outline: none;
+		cursor: pointer;
+    }
+	
+	 .glow-on-hover {
+            background-color: white;
+            color: #333; /* Text color */
+            border: 2px solid transparent; /* Border color */
+            height: 34px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+			font-weight: bold;
+			margin-left: 10px;
+        }
+
+        .glow-on-hover:hover {
+            background-color: #D0A650; /* Hover background color */
+            color: #244AA5; /* Hover text color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Glow effect */
+        }
+</style>
+<body>
+    <p style="font-size: 40px; text-align: center;"><span style="font-weight: bold; font-family: Arial; font-size: 60px;" id="countdown"></span> ditë kan met,<br> edhe kom me vi te <span style="font-weight: bold; color: #D0A650;">Kosova.</span></p>
+
+    <!-- Add an input field for the target date -->
+    <p style="text-align: center;">
+      <input type="date" id="targetDateInput">
+        <button onclick="setTargetDate()" class="glow-on-hover">Llogarit Ditët</button>
+    </p>
+	
+	
+
+	<img class="kosova" src="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/361276855_709580324514055_8494067465549380790_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=BQMIP6XxlyUAX_rOvQe&_nc_ht=scontent-dus1-1.xx&oh=00_AfDhBWFAaE8_-xFG76i4rogdKQa5We8rXCTJ01vbzw2U8Q&oe=65531BFF">
+
+    <script>
+        // Function to set the target date from input and save to local storage
+        function setTargetDate() {
+            const targetDateInput = document.getElementById('targetDateInput');
+            const newTargetDate = new Date(targetDateInput.value).getTime();
+
+            // Save the new target date to local storage
+            localStorage.setItem('targetDate', newTargetDate);
+
+            // Update the target date and the countdown
+            targetDate = newTargetDate;
+            updateCountdown();
+        }
+
+        // Function to update the countdown
+        function updateCountdown() {
+            const currentDate = new Date().getTime();
+            const daysLeft = Math.floor((targetDate - currentDate) / (1000 * 60 * 60 * 24)) + 1;
+
+            // Update the HTML element with the countdown
+            document.getElementById('countdown').textContent = daysLeft;
+        }
+
+        // Retrieve target date from local storage
+        let targetDate = localStorage.getItem('targetDate');
+
+        // Check if target date exists in local storage, otherwise use the default
+        if (!targetDate) {
+            targetDate = new Date('2023-11-17T00:00:00').getTime();
+        }
+
+        // Initial call to update the countdown
+        updateCountdown();
+
+        // Set an interval to update the countdown every second (you can adjust this interval)
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
